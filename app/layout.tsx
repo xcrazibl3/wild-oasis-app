@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`bg-primary-950 text-primary-100 min-h-screen flex flex-col ${josefinSans.className}`}
+        className={`bg-primary-950 text-primary-100 min-h-screen flex flex-col relative ${josefinSans.className}`}
       >
         <Header />
         <div className='flex-1 px-8 py-12'>
