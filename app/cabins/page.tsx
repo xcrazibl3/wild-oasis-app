@@ -1,40 +1,15 @@
-import CabinCard from "@/components/CabinCard";
+import CabinList from "@/components/CabinList";
+import Spinner from "@/components/Spinner";
 import { Metadata } from "next";
-import Cabin from "@/interfaces/cabin";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Cabins",
   description: "Explore our unique cabins",
 };
 
-export default function Page() {
+export default async function Page() {
   // CHANGE
-  const cabins: Cabin[] = [
-    {
-      id: "1",
-      name: "Mountain Retreat",
-      maxCapacity: 4,
-      regularPrice: 200,
-      discount: 20,
-      image: "/images/cabin1.jpg",
-    },
-    {
-      id: "2",
-      name: "Mountain Retreat",
-      maxCapacity: 4,
-      regularPrice: 200,
-      discount: 20,
-      image: "/images/cabin1.jpg",
-    },
-    {
-      id: " 3",
-      name: "Mountain Retreat",
-      maxCapacity: 4,
-      regularPrice: 200,
-      discount: 20,
-      image: "/images/cabin1.jpg",
-    },
-  ];
 
   return (
     <div>
@@ -49,14 +24,9 @@ export default function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
-
-      {cabins.length > 0 && (
-        <div className='grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14'>
-          {cabins.map((cabin) => (
-            <CabinCard cabin={cabin} key={cabin.id} />
-          ))}
-        </div>
-      )}
+      <Suspense fallback={<Spinner />}>
+        <CabinList />
+      </Suspense>
     </div>
   );
 }
