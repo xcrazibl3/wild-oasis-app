@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Explore our unique cabins",
 };
 
+export const revalidate = 3600; // Revalidates once per hour
+
 export default async function Page() {
   // CHANGE
 
