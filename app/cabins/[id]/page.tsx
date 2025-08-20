@@ -1,4 +1,4 @@
-import { getCabin } from "@/lib/data-service";
+import { getCabin, getCabins } from "@/lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
@@ -13,6 +13,18 @@ export async function generateMetadata({
     title: `Cabin ${name} | The Wild Oasis`,
     description: `Discover the beauty of the Dolomites with our exclusive cabin rental. Cabin ${name} : ${description}`,
   };
+}
+
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+  if (!cabins.length) {
+    return [];
+  }
+
+  const ids = cabins.map((cabin) => ({
+    id: String(cabin.id),
+  }));
+  return ids;
 }
 
 export default async function Page({
