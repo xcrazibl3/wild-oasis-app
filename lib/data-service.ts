@@ -2,6 +2,7 @@ import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
 import Guest from "@/interfaces/guest";
 import Booking from "@/interfaces/booking";
+import { notFound } from "next/navigation";
 /////////////
 // GET
 
@@ -17,6 +18,7 @@ export async function getCabin(id: string) {
 
   if (error) {
     console.error(error);
+    notFound();
   }
 
   return data;
